@@ -13,7 +13,9 @@ namespace Curs
         public int MousePositionX;
         public int MousePositionY;
         public float GravitationX = 0;
-        public float GravitationY = 1; // пусть гравитация будет силой один пиксель за такт, нам хватит
+        public float GravitationY = 0; // пусть гравитация будет силой один пиксель за такт, нам хватит
+        public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
+
         public void UpdateState()
         {
             foreach (var particle in particles)
@@ -38,6 +40,12 @@ namespace Curs
                 }
                 else
                 {
+                    foreach (var point in impactPoints)
+                    {
+                        point.ImpactParticle(particle);
+                    }
+
+
                     // гравитация воздействует на вектор скорости, поэтому пересчитываем его
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
@@ -72,7 +80,12 @@ namespace Curs
             {
                 particle.Draw(g);
             }
+            
+            foreach (var point in impactPoints) // тут теперь  impactPoints
+            {
+                point.Render(g); // это добавили
+            }
         }
-    }
 
+    }
 }
