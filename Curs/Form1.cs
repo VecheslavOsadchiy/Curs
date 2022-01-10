@@ -38,22 +38,27 @@ namespace Curs
                     particle.Y = MousePositionY;
 
                     // делаю рандомное направление, скорость и размер
-                    particle.Direction = Particle.rand.Next(360);
-                    particle.Speed = 1 + Particle.rand.Next(10);
+                    var direction = (double)Particle.rand.Next(360);
+                    var speed = 1 + Particle.rand.Next(10);
+
+                    particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
+                    particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
                     particle.Radius = 2 + Particle.rand.Next(10);
                 }
                 else
                 {
-                    var directionInRadians = particle.Direction / 180 * Math.PI;
-                    particle.X += (float)(particle.Speed * Math.Cos(directionInRadians));
-                    particle.Y -= (float)(particle.Speed * Math.Sin(directionInRadians));
+                    particle.X += particle.SpeedX;
+                    particle.Y += particle.SpeedY;
                 }
             }
             for (var i = 0; i < 10; ++i)
             {
                 if (particles.Count < 500) // пока частиц меньше 500 генерируем новые
                 {
-                    var particle = new Particle();
+                    var particle = new ParticleColorful();
+                    // ну и цвета меняем
+                    particle.FromColor = Color.Yellow;
+                    particle.ToColor = Color.FromArgb(0, Color.Magenta);
                     particle.X = MousePositionX;
                     particle.Y = MousePositionY;
                     particles.Add(particle);
@@ -81,7 +86,7 @@ namespace Curs
             UpdateState(); // каждый тик обновляем систему
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.White); // добавил очистку              
+                g.Clear(Color.Black); // добавил очистку              
                 Render(g); // рендерим систему
             }
             // обновить picDisplay
@@ -96,7 +101,16 @@ namespace Curs
         private int MousePositionY = 0;
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            // в обработчике заносим положение мыши в переменные для хранения положения мыши
+            
+        }
+
+        private void picDisplay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        {// в обработчике заносим положение мыши в переменные для хранения положения мыши
             MousePositionX = e.X;
             MousePositionY = e.Y;
         }
