@@ -34,8 +34,12 @@
             this.tbDirection = new System.Windows.Forms.TrackBar();
             this.lblDirection = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.tbGraviton1 = new System.Windows.Forms.TrackBar();
+            this.tbGraviton2 = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -81,11 +85,31 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Направление";
             // 
+            // tbGraviton1
+            // 
+            this.tbGraviton1.Location = new System.Drawing.Point(230, 484);
+            this.tbGraviton1.Maximum = 100;
+            this.tbGraviton1.Name = "tbGraviton1";
+            this.tbGraviton1.Size = new System.Drawing.Size(175, 45);
+            this.tbGraviton1.TabIndex = 4;
+            this.tbGraviton1.Scroll += new System.EventHandler(this.tbGraviton_Scroll);
+            // 
+            // tbGraviton2
+            // 
+            this.tbGraviton2.Location = new System.Drawing.Point(425, 484);
+            this.tbGraviton2.Maximum = 100;
+            this.tbGraviton2.Name = "tbGraviton2";
+            this.tbGraviton2.Size = new System.Drawing.Size(166, 45);
+            this.tbGraviton2.TabIndex = 5;
+            this.tbGraviton2.Scroll += new System.EventHandler(this.tbGraviton2_Scroll);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 528);
+            this.Controls.Add(this.tbGraviton2);
+            this.Controls.Add(this.tbGraviton1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblDirection);
             this.Controls.Add(this.tbDirection);
@@ -96,6 +120,8 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbGraviton2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,6 +134,8 @@
         private System.Windows.Forms.TrackBar tbDirection;
         private System.Windows.Forms.Label lblDirection;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TrackBar tbGraviton1;
+        private System.Windows.Forms.TrackBar tbGraviton2;
     }
 }
 
